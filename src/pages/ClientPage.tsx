@@ -3,11 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import HeaderNavigation from '@/components/HeaderNavigation';
 import { useState } from 'react';
-import { Users, Search, Mail, Phone, Calendar, DollarSign, MessageCircle, Clock, User, Activity, Database, FileText, CheckCircle, XCircle, AlertCircle, Video, Bot, UserIcon, FileAudio, ClipboardList } from 'lucide-react';
+import { Users, Search, Mail, Phone, Calendar, DollarSign, MessageCircle, Clock, User, Activity, Database, FileText, CheckCircle, XCircle, AlertCircle, Video, Bot, UserIcon, FileAudio, ClipboardList, Printer } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import completeClientData from '@/data/completeClientData.json';
 
 const ClientPage = () => {
+  const navigate = useNavigate();
   const [selectedClient, setSelectedClient] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -176,19 +178,27 @@ const ClientPage = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>Plano: <span className="font-medium">{client.plan}</span></span>
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>{client.lastContact}</span>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <span>Plano: <span className="font-medium">{client.plan}</span></span>
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="w-3 h-3" />
+                        <span>{client.lastContact}</span>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex space-x-2">
-                    <Button size="sm" variant="outline" className="w-full" onClick={() => openClientDetails(client)} data-testid={`button-view-${client.id}`}>
-                      Ver Detalhes
-                    </Button>
-                  </div>
+
+                    <div className="flex space-x-2">
+                      <Button size="sm" variant="outline" className="w-full" onClick={() => openClientDetails(client)} data-testid={`button-view-${client.id}`}>
+                        Ver Detalhes
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="w-full"
+                        onClick={() => navigate(`/labels/${client.id}`)}
+                      >
+                        <Printer className="w-4 h-4 mr-2" />
+                        Imprimir
+                      </Button>
+                    </div>
                 </div>
               </CardContent>
             </Card>

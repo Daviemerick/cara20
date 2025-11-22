@@ -253,3 +253,35 @@
     }
   }
 }
+
+.print-area {
+  display: none;
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-area {
+    display: block !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-area .print-label-wrapper {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 0 auto 6mm auto;
+  }
+
+  .print-area .label-sheet {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
