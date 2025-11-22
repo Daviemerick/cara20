@@ -13,6 +13,7 @@ import ClientPage from "./pages/ClientPage";
 import CalendarPage from "./pages/CalendarPage";
 import SettingsPage from "./pages/SettingsPage";
 import ClientConfigPage from "./pages/ClientConfigPage";
+import LabelPrintPage from "./pages/LabelPrintPage";
 import NotFound from "./pages/NotFound";
 
 const AppRoutes = () => {
@@ -77,6 +78,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <ClientConfigPage />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/labels/:clientId" 
+        element={
+          <ProtectedRoute>
+            <LabelPrintPage />
           </ProtectedRoute>
         } 
       />
